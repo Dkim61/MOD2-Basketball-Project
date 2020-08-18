@@ -1,0 +1,31 @@
+<h1><%= @user.user_name %></h1>
+<h1><%= @user.full_name %></h1>
+<h1><%= @user.email %></h1>
+<h1><%= @user.age %></h1>
+
+
+
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+
+<br> 
+  #button_to "Edit", :action => 'edit', :id => @user.id
+
+
+<br>
+<br>
+link to all users!
+<%= link_to "All users", users_path %>
+
+
+
+<h2> Search for players below! </h2>
+<%= form_tag(users_path) do %>
+Player <%= text_field_tag :lastName %>
+<%= submit_tag "search " %>
+<% end %>
+
+
+
+
+
+
