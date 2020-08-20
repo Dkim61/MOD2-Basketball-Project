@@ -3,8 +3,7 @@ class CreatePlayers < ActiveRecord::Migration[6.0]
     create_table :players do |t|
       t.string :firstName
       t.string :lastName
-      t.string :playerId
-
+      t.string :playerId   
       t.timestamps
     end
   end

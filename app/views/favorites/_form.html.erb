@@ -1,0 +1,13 @@
+<%= form_for @favorite do |f| %>
+    <%= f.label :User %>
+    <%= f.collection_select :user_id, User.all, :id, :user_name %><br>
+
+    <%= f.label :Player %>
+    <%= f.collection_select :player_id, Player.all, :id, :lastName%><br>
+
+    <%= f.submit %>
+<% end %>
+
+
+
+

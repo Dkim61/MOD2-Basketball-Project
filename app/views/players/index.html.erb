@@ -1,4 +1,12 @@
+<h1> All NBA Players from 2015-2018 </h1><br>
+
+<h2> Search for players by last name below! </h2>
+<%= form_tag(players_path) do %>
+Player <%= text_field_tag :lastName %>
+<%= submit_tag "search " %>
+<% end %>
+
 <%= @players.each do |player| %>
-    <%= player.firstName %> <%= player.lastName %>
-    <%= player.playerId %>
+    <%= link_to player.firstName + player.lastName, player_path(player) %><br>
+    <br>
 <% end %>

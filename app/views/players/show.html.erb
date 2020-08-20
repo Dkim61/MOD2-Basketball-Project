@@ -1,0 +1,46 @@
+<h1><%= @player.firstName %></h1>
+<h1><%= @player.lastName %></h1>
+<h1><%= @player.playerId %></h1>
+
+<h1> Player Career Stats </h1>
+<% my_url = "https://api-nba-v1.p.rapidapi.com/statistics/players/playerId/" %>
+
+<% my_url = my_url + @player.playerId %>
+<% url = URI(my_url) %>
+<% http = Net::HTTP.new(url.host, url.port) %>
+<% http.use_ssl = true %>
+<% http.verify_mode = OpenSSL::SSL::VERIFY_NONE %>
+<% request = Net::HTTP::Get.new(url) %>
+<% request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com' %>
+<% request["x-rapidapi-key"] = ENV["NBA_API_KEY"] %>
+<% response = http.request(request) %>
+<% myjson = JSON.parse(response.body) %>
+<% stats = myjson["api"]["statistics"] %>
+<% player_stat = {} %>
+<% stats.each do |stat| %>
+<% attributes = ["points", "fgp", "ftp", 'totReb', "assists", "steals", "blocks", "turnovers"] %>
+<% attributes.each do |attribute| %>
+    <% if !player_stat[attribute] %>
+    <% player_stat[attribute] = [stat[attribute]] %>
+    <% else %>
+    <% player_stat[attribute] << stat[attribute] %>
+    <% end %>
+<% end %>
+<% end %>
+<% player_stat.each do |key, value| %>
+<%= key %><br>
+<% total = 0.0 %>
+<% n_games = 0 %>
+<% value.each do |v| %>
+<% if v != "" %>
+<% n_games += 1 %>
+<% total += v.to_f %>
+<% end %>
+<% end %>
+<% average = total / n_games %>
+<%= (average*100).round / 100.0 %><br>
+<% end %>
+<br>
+<br>
+<br>
+<%= link_to "Favorite this player", new_favorite_path %>
