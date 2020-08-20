@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :find_song, only: [:show, :edit, :update]
+    before_action :find_user, only: [:show, :edit, :update]
 
     def index
         @users = User.all
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:user_name, :full_name, :email, :age)
     end
 
-    def find_song
+    def find_user
         @user = User.find(params[:id])
     end
 

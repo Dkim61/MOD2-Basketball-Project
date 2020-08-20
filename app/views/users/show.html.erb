@@ -12,15 +12,27 @@
 <br>
 <%= link_to "View All Players", players_path %>
 
-
-
-
-
 <h2> Search for players by last name below! </h2>
 <%= form_tag(players_path) do %>
 Player <%= text_field_tag :lastName %>
 <%= submit_tag "search " %>
 <% end %>
+<br>
+<br>
+
+<h1><%= "#{@user.user_name}'s Favorite Players"%></h1>
+<% if @user.favorites.length > 0  %>
+<% playerfavs = {} %>
+    <% @user.favorites.each do |fav| %>
+        <% playerfavs[fav.player_id] = fav.player.firstName + " " + fav.player.lastName %>
+    <% end %>
+    <% playerfavs.each do |key, value| %>
+    <%= link_to value, player_path %><br>
+    <% end %>
+<% else %>
+    <%= "You have no favorite players" %>
+<% end %>
+
 
 
 

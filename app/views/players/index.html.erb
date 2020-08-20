@@ -7,6 +7,6 @@ Player <%= text_field_tag :lastName %>
 <% end %>
 
 <%= @players.each do |player| %>
-    <%= link_to player.firstName + player.lastName, player_path(player) %><br>
+    <%= link_to "#{player.firstName} #{player.lastName}", player_path(player) %><br>
     <br>
 <% end %>
