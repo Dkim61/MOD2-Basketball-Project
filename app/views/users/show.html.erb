@@ -5,13 +5,15 @@
 <br>
 <%= link_to "Edit Profile", edit_user_path(@user) %>
 <br> 
+<%= button_to "Delete User", user_path(@user), method: :delete %>
 <br>
 <br>
 <%= link_to "View All Users", users_path %>
 <br>
 <br>
 <%= link_to "View All Players", players_path %>
-
+<br>
+<br>
 <h2> Search for players by last name below! </h2>
 <%= form_tag(players_path) do %>
 Player <%= text_field_tag :lastName %>
@@ -19,6 +21,7 @@ Player <%= text_field_tag :lastName %>
 <% end %>
 <br>
 <br>
+<%= link_to "Favorite a player", new_favorite_path %>
 
 <h1><%= "#{@user.user_name}'s Favorite Players"%></h1>
 <% if @user.favorites.length > 0  %>
@@ -28,6 +31,7 @@ Player <%= text_field_tag :lastName %>
     <% end %>
     <% playerfavs.each do |key, value| %>
     <%= link_to value, player_path %><br>
+    <%# button_to "Delete Favorite", favorites_path, method: :destroy %><br>
     <% end %>
 <% else %>
     <%= "You have no favorite players" %>
