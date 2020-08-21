@@ -22,21 +22,17 @@ Player <%= text_field_tag :query, params[:query] %>
 <br>
 <br>
 <br>
-<%= link_to "Favorite a player", new_favorite_path %>
+
 
 <h1><%= "#{@user.user_name}'s Favorite Players"%></h1>
-<% if @user.favorites.length > 0  %>
-<% playerfavs = {} %>
-    <% @user.favorites.each do |fav| %>
-        <% playerfavs[fav.player_id] = fav.player.firstName + " " + fav.player.lastName %>
-    <% end %>
-    <% playerfavs.each do |key, value| %>
-    <%= link_to value, player_path %><br>
-    <%# <%= button_to "Delete Favorite", favorite_path(:id => favorite.id]), method: :delete %><br>
-    <% end %>
-<% else %>
-    <%= "You have no favorite players" %>
-<% end %>
+<% @user.favorites.each do |favorite| %>
+<% favorite_name = "#{favorite.player.firstName} #{favorite.player.lastName}" %>
+    <li><%= link_to favorite_name, player_path(favorite) %>
+        <%= button_to "Delete Player", "/favorites/#{favorite.id}", method: :delete %>
+    </li>
+<%end%>
+
+
 
 
 
