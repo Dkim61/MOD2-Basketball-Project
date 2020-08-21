@@ -1,10 +1,9 @@
-<h1><%= @user.user_name %></h1>
-<h1><%= @user.full_name %></h1>
-<h1><%= @user.email %></h1>
-<h1><%= @user.age %></h1>
+<h2><%= @user.user_name %></h2>
+<h2><%= @user.full_name %></h2>
+<h2><%= @user.email %></h2>
+<h2><%= @user.age %></h2>
 <br>
 <%= link_to "Edit Profile", edit_user_path(@user) %>
-<br> 
 <br>
 <br>
 <%= link_to "View All Users", users_path %>
@@ -17,10 +16,11 @@
 
 
 <h2> Search for players by last name below! </h2>
-<%= form_tag(players_path) do %>
-Player <%= text_field_tag :lastName %>
+<%= form_tag players_path, method: :get do %>
+Player <%= text_field_tag :query, params[:query] %>
 <%= submit_tag "search " %>
 <% end %>
+
 
 
 

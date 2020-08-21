@@ -1,6 +1,6 @@
-<h1> Index Page for users</h1>
+<h2> Index Page for users</h2>
 
-<%= @users.each do |user| %>
+<%@users.each do |user| %>
     <%= link_to user.user_name, user_path(user) %><br>
 <% end %>
 
