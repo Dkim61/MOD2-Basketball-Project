@@ -32,7 +32,7 @@ Player <%= text_field_tag :query, params[:query] %>
     <% end %>
     <% playerfavs.each do |key, value| %>
     <%= link_to value, player_path %><br>
-    <%# button_to "Delete Favorite", favorite_path(@favorite), method: :delete %><br>
+    <%# <%= button_to "Delete Favorite", favorite_path(:id => favorite.id]), method: :delete %><br>
     <% end %>
 <% else %>
     <%= "You have no favorite players" %>
