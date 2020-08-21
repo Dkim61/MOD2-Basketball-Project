@@ -15,10 +15,11 @@
 <br>
 <br>
 <h2> Search for players by last name below! </h2>
-<%= form_tag(players_path) do %>
-Player <%= text_field_tag :lastName %>
+<%= form_tag players_path, method: :get do %>
+Player <%= text_field_tag :query, params[:query] %>
 <%= submit_tag "search " %>
 <% end %>
+<br>
 <br>
 <br>
 <%= link_to "Favorite a player", new_favorite_path %>
@@ -31,7 +32,7 @@ Player <%= text_field_tag :lastName %>
     <% end %>
     <% playerfavs.each do |key, value| %>
     <%= link_to value, player_path %><br>
-    <%# button_to "Delete Favorite", favorites_path, method: :destroy %><br>
+    <%# button_to "Delete Favorite", favorite_path(@favorite), method: :delete %><br>
     <% end %>
 <% else %>
     <%= "You have no favorite players" %>
